@@ -1,7 +1,7 @@
 module.exports = {
   content: [],
   presets: [],
-  darkMode: false, // or 'class'
+  darkMode: true, // or 'class'
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {

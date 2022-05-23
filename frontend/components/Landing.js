@@ -7,18 +7,22 @@ import Image from 'next/image';
 
 const Landing = () => {
   return (
-    <Container bg={bg}>
-      <Wrapper>
-        <InnerWrapper>
-          <Left>
+    <div className="container">
+      {' '}
+      <div className="wrapper">
+        {' '}
+        <div className="inner-wrapper">
+          <div className="left">
+            {' '}
             <HeroText />
-          </Left>
-          <TiltWrapper>
+          </div>
+          <div className="tilt-wrapper">
+            {' '}
             <Image src={image} alt="image" />
-          </TiltWrapper>
-        </InnerWrapper>
-      </Wrapper>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
