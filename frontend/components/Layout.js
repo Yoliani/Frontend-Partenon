@@ -1,15 +1,12 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 const Layout = ({children}) => {
   return (
     <>
-      <div>
-        <h1>Layout prueba</h1>
-      </div>
+      <Navbar />
+
       {children}
-      <footer>
-        <h2>Footet</h2>
-      </footer>
     </>
   );
 };
