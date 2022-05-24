@@ -32,10 +32,10 @@
 #  updated_at             :datetime         not null
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :jwt_authenticatable,
+         jwt_revocation_strategy: JwtDenylist
+  include DeviseTokenAuth::Concerns::User
+
   enum tipo_usuario: {
     admin: 0,
     user: 1
