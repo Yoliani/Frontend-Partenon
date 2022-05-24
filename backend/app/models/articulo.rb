@@ -13,4 +13,5 @@
 #  temas_id   :integer
 #
 class Articulo < ApplicationRecord
+  has_one :tema
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -35,7 +37,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum tipo_usuario: {
-          admin: 0,
-          user: 1,
+    admin: 0,
+    user: 1
   }, _prefix: true
 end
