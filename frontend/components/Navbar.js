@@ -22,7 +22,7 @@ function Navbar() {
 
                   <div className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     {' '}
-                    <Link href="/">Publicaciones</Link>
+                    <Link href="/articles">Publicaciones</Link>
                   </div>
                 </div>
               </div>
