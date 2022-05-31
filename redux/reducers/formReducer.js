@@ -2,6 +2,9 @@ import {
   FETCH_FORM_ARTICLES_FAIL,
   FETCH_FORM_ARTICLES_REQUEST,
   FETCH_FORM_ARTICLES_SUCCESS,
+  FETCH_FORM_ARTICLE_FAIL,
+  FETCH_FORM_ARTICLE_REQUEST,
+  FETCH_FORM_ARTICLE_SUCCESS,
   FETCH_FORM_THEMES_FAIL,
   FETCH_FORM_THEMES_REQUEST,
   FETCH_FORM_THEMES_SUCCESS,
@@ -14,6 +17,8 @@ export const formReducer = (
   state = {
     form: {},
     articles: [],
+    article: null,
+    loading: false,
     themes: [],
   },
   action
@@ -66,6 +71,24 @@ export const formReducer = (
       };
 
     case FETCH_FORM_THEMES_FAIL:
+      return {
+        ...state,
+        error: payload,
+      };
+    case FETCH_FORM_ARTICLE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case FETCH_FORM_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        article: payload,
+      };
+
+    case FETCH_FORM_ARTICLE_FAIL:
       return {
         ...state,
         error: payload,

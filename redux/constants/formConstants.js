@@ -9,3 +9,9 @@ export const SET_ALERT_RESET = 'SET_ALERT_RESET';
 export const FETCH_FORM_THEMES_FAIL = 'FETCH_FORM_THEMES_FAIL'; // Fetch form themes failR
 export const FETCH_FORM_THEMES_SUCCESS = 'FETCH_FORM_THEMES_SUCCESS'; // Fetch form themes success
 export const FETCH_FORM_THEMES_REQUEST = 'FETCH_FORM_THEMES_REQUEST'; // Fetch form themes request
+
+export const FETCH_FORM_ARTICLE_FAIL = 'FETCH_FORM_ARTICLE_FAIL'; // Fetch form articles fail
+export const FETCH_FORM_ARTICLE_SUCCESS = 'FETCH_FORM_ARTICLE_SUCCESS'; // Fetch form articles success
+export const FETCH_FORM_ARTICLE_REQUEST = 'FETCH_FORM_ARTICLE_REQUEST'; // Fetch form articles request
+
+

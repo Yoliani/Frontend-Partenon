@@ -1,10 +1,12 @@
 import fetcher from '../../API/fetcher';
 import {articles_url, themes_url} from '../../API/urls';
-import camelcaseKeys from 'camelcase-keys';
 import {
   FETCH_FORM_ARTICLES_FAIL,
   FETCH_FORM_ARTICLES_REQUEST,
   FETCH_FORM_ARTICLES_SUCCESS,
+  FETCH_FORM_ARTICLE_FAIL,
+  FETCH_FORM_ARTICLE_REQUEST,
+  FETCH_FORM_ARTICLE_SUCCESS,
   FETCH_FORM_THEMES_FAIL,
   FETCH_FORM_THEMES_REQUEST,
   FETCH_FORM_THEMES_SUCCESS,
@@ -80,4 +82,24 @@ export const setAlertSuccess = message => async dispatch => {
       type: SET_ALERT_RESET,
     });
   }, 2000);
+};
+
+export const fetchSingleFormArticles = id => async dispatch => {
+  try {
+    dispatch({
+      type: FETCH_FORM_ARTICLE_REQUEST,
+    });
+
+    const articles = await fetcher(`${articles_url}/${id}?includes=tema`);
+    dispatch({
+      type: FETCH_FORM_ARTICLE_SUCCESS,
+      payload: articles,
+    });
+  } catch (error) {
+    dispatch({
+      type: FETCH_FORM_ARTICLE_FAIL,
+      payload: error.message,
+    });
+    dispatch(setAlertFail('Error fetching article'));
+  }
 };

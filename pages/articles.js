@@ -18,7 +18,7 @@ const ShowArticles = () => {
           {articles?.map((article, index) => {
             return (
               <div
-                className="flex justify-center items-center mx-auto px-20 pt-20 pb-4"
+                className="flex justify-center items-center mx-auto w-7/12 px-20 pt-20 pb-4"
                 key={index}
               >
                 <div className="border bg-white rounded-lg p-6 text-gray-100 relative z-10">
