@@ -3,10 +3,30 @@ import Image from 'next/image';
 import logo from '../public/logos/partenon.svg';
 import Layout from '@/components/Layout';
 import {useRouter} from 'next/router';
+import {useForm} from 'react-hook-form';
+import registerUser from '@/API/registerUser';
+import {setAlertFail, setAlertSuccess} from '@/redux/actions/formActions';
+import {useDispatch} from 'react-redux';
 
 const Register = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+  console.log(errors);
+  const onSubmit = data => {
+				console.log(data)
 
+    registerUser(data, () => {
+      dispatch(setAlertSuccess('Client create successfully.'));
+      router.push('/');
+    }).catch(() =>
+      dispatch(setAlertFail('Fill the highlighted fields correctly.'))
+    );
+  };
   return (
     <Layout>
       <section className="h-full w-full justify-center flex pt-12">
@@ -23,7 +43,7 @@ const Register = () => {
                           PARTENON
                         </h4>
                       </div>
-                      <form>
+                      <form onSubmit={handleSubmit(onSubmit)}>
                         <p className="mb-4">Por favor registrese</p>
                         <div className="mb-4">
                           <input
@@ -31,6 +51,44 @@ const Register = () => {
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Usuario"
+                            {...register('nickname', {
+                              required: true,
+                              maxLength: 80,
+                            })}
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="text"
+                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="exampleFormControlInput1"
+                            placeholder="Nombres"
+                            {...register('name', {
+                              required: true,
+                            })}
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="text"
+                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="exampleFormControlInput1"
+                            placeholder="Apellidos"
+                            {...register('lastname', {
+                              required: true,
+                            })}
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="number"
+                            min={16}
+                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="exampleFormControlInput1"
+                            placeholder="Edad"
+                            {...register('age', {
+                              required: true,
+                            })}
                           />
                         </div>
                         <div className="mb-4">
@@ -39,6 +97,10 @@ const Register = () => {
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Correo"
+                            {...register('email', {
+                              required: true,
+                              maxLength: 80,
+                            })}
                           />
                         </div>
                         <div className="mb-4">
@@ -47,6 +109,9 @@ const Register = () => {
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Contraseña"
+                            {...register('password', {
+                              required: true,
+                            })}
                           />
                         </div>
                         <div className="mb-4">
@@ -55,13 +120,16 @@ const Register = () => {
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Confirmar Contraseña"
+                            {...register('password_confirmation', {
+                              required: true,
+                            })}
                           />
                         </div>
 
                         <div className="text-center pt-1 mb-12 pb-1">
                           <button
                             className="inline-block px-6 py-2.5 text-white font-medium text-xs bg-orangeOxford leading-tight uppercase rounded shadow-md hover:bg-orange-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="button"
+                            type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                           >

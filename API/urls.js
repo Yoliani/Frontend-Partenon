@@ -2,3 +2,4 @@
 export const URL = 'http://localhost:3000';
 export const articles_url = `${URL}/articulos`;
 export const themes_url = `${URL}/temas`;
+export const auth_url = `${URL}/auth`;
