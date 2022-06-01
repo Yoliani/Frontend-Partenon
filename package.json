@@ -15,7 +15,7 @@
     ".next/cache"
   ],
   "dependencies": {
-    "@headlessui/react": "^1.6.2",
+    "@headlessui/react": "^1.6.4",
     "camelcase-keys": "^7.0.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",

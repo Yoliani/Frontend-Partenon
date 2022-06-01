@@ -2,9 +2,15 @@ import React, {useState} from 'react';
 import {Transition} from '@headlessui/react';
 import Image from 'next/image';
 import logo from '../public/logos/partenon.svg';
+import icono from '../public/robot.png';
+
 import Link from 'next/link';
+import {getUser} from '@/services/authentication';
+import {useSelector} from 'react-redux';
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector(state => state.user.userInfo);
+
   return (
     <div className="overflow-hidden fixed top-0 w-full z-50">
       <nav className="bg-white">
@@ -33,7 +39,23 @@ function Navbar() {
             </div>
             <div className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               {' '}
-              <Link href="/login">Iniciar Sesión</Link>
+              {getUser() === null ? (
+                <Link href="/login">Iniciar Sesión</Link>
+              ) : (
+                <Link href="/user">
+                  <div className="fle flex-row items-center justify-center space-x-2">
+                    <Image
+                      className=""
+                      src={icono}
+                      alt="Workflow"
+                      width={'30%'}
+                      height={'30%'}
+                    />
+
+                    {user?.nickname}
+                  </div>
+                </Link>
+              )}
             </div>
             <div className="-mr-2 flex md:hidden">
               <button

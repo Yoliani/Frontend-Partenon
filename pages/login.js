@@ -3,9 +3,25 @@ import Image from 'next/image';
 import logo from '../public/logos/partenon.svg';
 import Layout from '@/components/Layout';
 import {useRouter} from 'next/router';
+import {useForm} from 'react-hook-form';
+import {useDispatch} from 'react-redux';
+import {setAlertFail, setAlertSuccess} from '@/redux/actions/formActions';
+import {login} from '@/redux/actions/userActions';
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const onSubmit = data => {
+    dispatch(login(data));
+  };
+
+  console.log(errors);
   return (
     <Layout>
       <section className="h-full w-full justify-center flex pt-12">
@@ -22,11 +38,15 @@ const Login = () => {
                           PARTENÓN
                         </h4>
                       </div>
-                      <form>
+                      <form onSubmit={handleSubmit(onSubmit)}>
                         <p className="mb-4">Por favor ingresa tu cuenta</p>
                         <div className="mb-4">
                           <input
-                            type="em"
+                            {...register('email', {
+                              required: true,
+                              maxLength: 80,
+                            })}
+                            type="email"
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Correo"
@@ -38,12 +58,16 @@ const Login = () => {
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="exampleFormControlInput1"
                             placeholder="Contraseña"
+                            {...register('password', {
+                              required: true,
+                              maxLength: 80,
+                            })}
                           />
                         </div>
                         <div className="text-center pt-1 mb-12 pb-1">
                           <button
                             className="inline-block px-6 py-2.5 text-white font-medium text-xs bg-orangeOxford leading-tight uppercase rounded shadow-md hover:bg-orange-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="button"
+                            type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                           >

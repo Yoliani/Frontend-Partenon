@@ -1,5 +1,6 @@
 import registerArticle from '@/API/registerArticle';
 import Layout from '@/components/Layout';
+import useAuth from '@/hooks/useAuth';
 import {
   fetchFormThemes,
   setAlertFail,
@@ -24,10 +25,11 @@ const CreateArticle = () => {
     formState: {errors},
   } = useForm();
 
+  useAuth();
   const fields = useSelector(state => state.form.themes);
   const onSubmit = data => {
     registerArticle(data, () => {
-      dispatch(setAlertSuccess('Client create successfully.'));
+      dispatch(setAlertSuccess('Article create successfully.'));
       router.push('/');
     }).catch(() =>
       dispatch(setAlertFail('Fill the highlighted fields correctly.'))

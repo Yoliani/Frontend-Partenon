@@ -18,6 +18,7 @@ export const formReducer = (
     form: {},
     articles: [],
     article: null,
+    alert: null,
     loading: false,
     themes: [],
   },
