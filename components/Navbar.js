@@ -42,19 +42,33 @@ function Navbar() {
               {getUser() === null ? (
                 <Link href="/login">Iniciar Sesión</Link>
               ) : (
-                <Link href="/user">
-                  <div className="fle flex-row items-center justify-center space-x-2">
-                    <Image
-                      className=""
-                      src={icono}
-                      alt="Workflow"
-                      width={'30%'}
-                      height={'30%'}
-                    />
+                <>
+                  <Link href="/">
+                    <div className="fle flex-row items-center justify-center space-x-2">
+                      <Image
+                        className=""
+                        src={icono}
+                        alt="Workflow"
+                        width={'30%'}
+                        height={'30%'}
+                      />
 
-                    {user?.nickname}
-                  </div>
-                </Link>
+                      {user?.nickname}
+                    </div>
+                  </Link>
+                  <Link href="/" onClick={() => {}}>
+                    <div className="fle flex-row items-center justify-center space-x-2">
+                      <Image
+                        className=""
+                        src={icono}
+                        alt="Workflow"
+                        width={'30%'}
+                        height={'30%'}
+                      />
+                      Desconectarse
+                    </div>
+                  </Link>
+                </>
               )}
             </div>
             <div className="-mr-2 flex md:hidden">

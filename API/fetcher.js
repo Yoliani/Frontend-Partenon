@@ -56,4 +56,12 @@ export const put = (url, opts = {headers: []}) => {
   });
 };
 
+export const del = (url, opts = {headers: {}}) => {
+  return fetch(url, {
+    method: 'DELETE',
+    headers: {...DEFAULT_HEADER, ...opts.headers},
+    ...opts,
+  });
+};
+
 export default fetcher;
