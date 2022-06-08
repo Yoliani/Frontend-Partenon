@@ -36,13 +36,14 @@ function Navbar() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-              {' '}
-              {getUser() === null ? (
-                <Link href="/login">Iniciar Sesión</Link>
-              ) : (
-                <>
+            </div>{' '}
+            {getUser() === null || getUser() === undefined ? (
+              <div className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <Link href="/login">Iniciar Sesión</Link>{' '}
+              </div>
+            ) : (
+              <>
+                <div className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   <Link href="/">
                     <div className="fle flex-row items-center justify-center space-x-2">
                       <Image
@@ -56,21 +57,21 @@ function Navbar() {
                       {user?.nickname}
                     </div>
                   </Link>
-                  <Link href="/" onClick={() => {}}>
+                </div>
+                <div
+                  className="text-black hover:bg-orangeOxford hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  onClick={() => {
+                    localStorage.clear();
+                  }}
+                >
+                  <Link href="/">
                     <div className="fle flex-row items-center justify-center space-x-2">
-                      <Image
-                        className=""
-                        src={icono}
-                        alt="Workflow"
-                        width={'30%'}
-                        height={'30%'}
-                      />
                       Desconectarse
                     </div>
                   </Link>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
             <div className="-mr-2 flex md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
